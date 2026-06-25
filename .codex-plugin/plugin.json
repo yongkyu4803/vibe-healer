@@ -1,0 +1,25 @@
+{
+  "name": "vibe-healer",
+  "version": "0.1.0",
+  "description": "Beginner-friendly Codex plugin that diagnoses local run issues, terminal errors, deployment failures, API key exposure, Git savepoints, and screenshot UI problems.",
+  "author": {
+    "name": "GQAI X TTimes"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Vibe Healer",
+    "shortDescription": "Diagnose beginner project problems and give one safe next step.",
+    "longDescription": "Vibe Healer helps beginners recover when a vibe-coded project will not run, throws errors, fails deployment, risks leaking API keys, needs a Git savepoint, or has visible UI problems. It favors diagnosis, plain language, safety, and verification over aggressive auto-fixing.",
+    "developerName": "GQAI X TTimes",
+    "category": "Productivity",
+    "capabilities": [
+      "Local project run diagnosis",
+      "Terminal and build error explanation",
+      "Deployment failure triage",
+      "API key safety checks",
+      "Git savepoint planning",
+      "Screenshot UI review"
+    ],
+    "defaultPrompt": "Use Vibe Healer to diagnose this project and give me the safest next step."
+  }
+}

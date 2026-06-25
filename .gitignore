@@ -1,0 +1,10 @@
+# local development artifacts
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.env
+.env.*
+!.env.example
+.vibe-healer-fixtures/

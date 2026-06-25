@@ -1,0 +1,6 @@
+interface:
+  display_name: "Error Doctor"
+  short_description: "Explain terminal errors safely."
+  default_prompt: "Use $error-doctor to explain this terminal error and give me the first fix to try."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Local Run Doctor"
+  short_description: "Find the safest local run command."
+  default_prompt: "Use $local-run-doctor to diagnose why this project will not run locally and give me the first safe command to try."
+policy:
+  allow_implicit_invocation: true

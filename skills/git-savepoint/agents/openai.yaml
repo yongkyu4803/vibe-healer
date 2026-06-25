@@ -1,0 +1,6 @@
+interface:
+  display_name: "Git Savepoint"
+  short_description: "Plan safe Git checkpoints."
+  default_prompt: "Use $git-savepoint to check my Git state and plan a safe savepoint before risky edits."
+policy:
+  allow_implicit_invocation: true

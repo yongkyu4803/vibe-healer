@@ -1,0 +1,6 @@
+interface:
+  display_name: "Deploy Fixer"
+  short_description: "Diagnose deployment failures."
+  default_prompt: "Use $deploy-fixer to diagnose this deployment failure and tell me the first safe fix."
+policy:
+  allow_implicit_invocation: true

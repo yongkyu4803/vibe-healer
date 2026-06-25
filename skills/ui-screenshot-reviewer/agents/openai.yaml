@@ -1,0 +1,6 @@
+interface:
+  display_name: "UI Screenshot Reviewer"
+  short_description: "Review screenshots for UI bugs."
+  default_prompt: "Use $ui-screenshot-reviewer to review this screenshot for visible UI problems and the first fix to make."
+policy:
+  allow_implicit_invocation: true
