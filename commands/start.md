@@ -3,7 +3,7 @@ description: "Vibe Healer 트리아지 허브. 현재 프로젝트 상태를 자
 allowed-tools: [Bash, Read]
 ---
 
-# /vibe-healer:start
+# /healer:start
 
 막혔을 때 어떤 헬러를 써야 할지 자동으로 찾아드립니다.
 

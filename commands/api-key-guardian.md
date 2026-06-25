@@ -3,7 +3,7 @@ description: "API 키 노출, 불안전한 .env 처리, .gitignore 미보호, �
 allowed-tools: [Bash, Read]
 ---
 
-# /vibe-healer:api-key-guardian
+# /healer:api-key-guardian
 
 $ARGUMENTS
 

@@ -3,7 +3,7 @@ description: "스크린샷에서 텍스트 넘침, 요소 겹침, 버튼 잘림,
 allowed-tools: [Read]
 ---
 
-# /vibe-healer:ui-screenshot-reviewer
+# /healer:ui-screenshot-reviewer
 
 $ARGUMENTS
 

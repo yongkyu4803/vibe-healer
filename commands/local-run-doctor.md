@@ -3,7 +3,7 @@ description: "로컬 프로젝트 실행 방법을 진단하고 시작 오류를
 allowed-tools: [Bash, Read]
 ---
 
-# /vibe-healer:local-run-doctor
+# /healer:local-run-doctor
 
 $ARGUMENTS
 

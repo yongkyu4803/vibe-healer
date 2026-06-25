@@ -1,12 +1,19 @@
 {
-  "name": "vibe-healer",
+  "name": "healer",
   "version": "0.1.0",
   "description": "Beginner-friendly plugin for diagnosing local run issues, terminal errors, deployment failures, API key safety, Git savepoints, and screenshot UI problems.",
   "author": {
     "name": "GQAI X TTimes",
     "email": "parkyongkyu0@gmail.com"
   },
-  "keywords": ["beginners", "debugging", "vibe-coding", "deploy", "security", "git"],
+  "keywords": [
+    "beginners",
+    "debugging",
+    "vibe-coding",
+    "deploy",
+    "security",
+    "git"
+  ],
   "license": "MIT",
   "skills": "./skills/",
   "commands": "./commands/"

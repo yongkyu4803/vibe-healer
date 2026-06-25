@@ -3,7 +3,7 @@ description: "Vercel, Render, Streamlit Community Cloud 배포 실패를 진단�
 allowed-tools: [Bash, Read]
 ---
 
-# /vibe-healer:deploy-fixer
+# /healer:deploy-fixer
 
 $ARGUMENTS
 

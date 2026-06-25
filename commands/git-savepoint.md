@@ -3,7 +3,7 @@ description: "Git 상태를 점검하고 위험한 작업 전에 안전한 커�
 allowed-tools: [Bash, Read]
 ---
 
-# /vibe-healer:git-savepoint
+# /healer:git-savepoint
 
 $ARGUMENTS
 
