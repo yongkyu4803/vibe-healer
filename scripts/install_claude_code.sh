@@ -19,10 +19,14 @@ echo ""
 rm -rf "$SKILLS_DIR"
 mkdir -p "$SKILLS_DIR"
 
-# .claude-plugin, commands, skills 복사
+# .claude-plugin, commands, skills, scripts 복사
 cp -r "$PLUGIN_DIR/.claude-plugin" "$SKILLS_DIR/"
 cp -r "$PLUGIN_DIR/commands"       "$SKILLS_DIR/"
 cp -r "$PLUGIN_DIR/skills"         "$SKILLS_DIR/"
+cp -r "$PLUGIN_DIR/scripts"        "$SKILLS_DIR/"
+
+# 소스 경로 저장 (자동 업데이트에서 사용)
+echo "$PLUGIN_DIR" > "$HOME/.claude/.healer_source_path"
 
 echo "✅ 설치 완료"
 echo ""

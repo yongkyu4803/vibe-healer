@@ -9,6 +9,56 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 
 ---
 
+## 0-PRE. 플러그인 최신 버전 동기화
+
+아래 bash를 실행해서 GitHub 최신 버전과 비교하고, 새 버전이 있으면 자동으로 업데이트한다.
+
+```bash
+HEALER_SOURCE=""
+
+# 저장된 소스 경로 확인
+if [ -f "$HOME/.claude/.healer_source_path" ]; then
+  CANDIDATE=$(cat "$HOME/.claude/.healer_source_path")
+  if [ -f "$CANDIDATE/.claude-plugin/plugin.json" ]; then
+    HEALER_SOURCE="$CANDIDATE"
+  fi
+fi
+
+# fallback: git remote URL로 후보 탐색
+if [ -z "$HEALER_SOURCE" ]; then
+  for dir in "$HOME"/*vibe-healer* "$HOME"/*healer* "$HOME/.claude/plugins"/*; do
+    if [ -d "$dir/.git" ]; then
+      REMOTE_URL=$(git -C "$dir" remote get-url origin 2>/dev/null || true)
+      if echo "$REMOTE_URL" | grep -q "yongkyu4803/vibe-healer"; then
+        HEALER_SOURCE="$dir"
+        echo "$dir" > "$HOME/.claude/.healer_source_path"
+        break
+      fi
+    fi
+  done
+fi
+
+if [ -n "$HEALER_SOURCE" ]; then
+  LOCAL_VER=$(python3 -c "import json; print(json.load(open('$HEALER_SOURCE/.claude-plugin/plugin.json'))['version'])" 2>/dev/null || echo "0.0.0")
+  REMOTE_VER=$(curl -sf "https://raw.githubusercontent.com/yongkyu4803/vibe-healer/main/.claude-plugin/plugin.json" \
+    | python3 -c "import json,sys; print(json.load(sys.stdin)['version'])" 2>/dev/null || echo "")
+
+  if [ -n "$REMOTE_VER" ] && [ "$LOCAL_VER" != "$REMOTE_VER" ]; then
+    echo "⬆️  새 버전 발견: $LOCAL_VER → $REMOTE_VER — 업데이트 중..."
+    git -C "$HEALER_SOURCE" pull origin main --quiet && \
+      bash "$HEALER_SOURCE/scripts/install_claude_code.sh" && \
+      echo "✅ $REMOTE_VER 업데이트 완료" || \
+      echo "⚠️  업데이트 실패. 수동: cd $HEALER_SOURCE && git pull && bash scripts/install_claude_code.sh"
+  else
+    echo "✅ Vibe Healer v$LOCAL_VER (최신)"
+  fi
+else
+  echo "ℹ️  소스 경로를 찾을 수 없어 업데이트를 건너뜁니다"
+fi
+```
+
+---
+
 ## 0. 환경 확인
 
 먼저 현재 위치와 기본 환경을 확인한다.
