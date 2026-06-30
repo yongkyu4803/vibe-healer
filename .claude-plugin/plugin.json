@@ -1,6 +1,6 @@
 {
   "name": "healer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Beginner-friendly plugin for diagnosing local run issues, terminal errors, deployment failures, API key safety, Git savepoints, and screenshot UI problems.",
   "author": {
     "name": "GQAI X TTimes",
