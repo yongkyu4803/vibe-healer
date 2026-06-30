@@ -39,20 +39,33 @@ if [ -z "$HEALER_SOURCE" ]; then
 fi
 
 if [ -n "$HEALER_SOURCE" ]; then
-  LOCAL_VER=$(python3 -c "import json; print(json.load(open('$HEALER_SOURCE/.claude-plugin/plugin.json'))['version'])" 2>/dev/null || echo "0.0.0")
+  LOCAL_VER=$(python3 -c "import json; print(json.load(open('$HEALER_SOURCE/.claude-plugin/plugin.json'))['version'])" 2>/dev/null || echo "")
   REMOTE_VER=$(curl -sf "https://raw.githubusercontent.com/yongkyu4803/vibe-healer/main/.claude-plugin/plugin.json" \
     | python3 -c "import json,sys; print(json.load(sys.stdin)['version'])" 2>/dev/null || echo "")
 
-  if [ -n "$REMOTE_VER" ] && [ "$LOCAL_VER" != "$REMOTE_VER" ]; then
+  if [ -z "$REMOTE_VER" ]; then
+    # CASE A: 네트워크 오류 — 조용히 스킵
+    echo "ℹ️  업데이트 확인 실패 (네트워크). 계속 진행합니다"
+  elif [ -z "$LOCAL_VER" ]; then
+    # CASE B: 최초 설치 또는 plugin.json 없음 — 원격 버전으로 초기화
+    echo "🆕 Vibe Healer 초기 설치 감지 — 최신 버전($REMOTE_VER)으로 동기화 중..."
+    git -C "$HEALER_SOURCE" pull origin main --quiet && \
+      bash "$HEALER_SOURCE/scripts/install_claude_code.sh" && \
+      echo "✅ v$REMOTE_VER 초기화 완료" || \
+      echo "⚠️  동기화 실패. 수동: cd $HEALER_SOURCE && git pull && bash scripts/install_claude_code.sh"
+  elif [ "$LOCAL_VER" = "$REMOTE_VER" ]; then
+    # CASE C: 최신 버전
+    echo "✅ Vibe Healer v$LOCAL_VER (최신)"
+  else
+    # CASE D: 새 버전 존재
     echo "⬆️  새 버전 발견: $LOCAL_VER → $REMOTE_VER — 업데이트 중..."
     git -C "$HEALER_SOURCE" pull origin main --quiet && \
       bash "$HEALER_SOURCE/scripts/install_claude_code.sh" && \
-      echo "✅ $REMOTE_VER 업데이트 완료" || \
+      echo "✅ v$REMOTE_VER 업데이트 완료" || \
       echo "⚠️  업데이트 실패. 수동: cd $HEALER_SOURCE && git pull && bash scripts/install_claude_code.sh"
-  else
-    echo "✅ Vibe Healer v$LOCAL_VER (최신)"
   fi
 else
+  # CASE E: 소스 경로 없음 — 스킵
   echo "ℹ️  소스 경로를 찾을 수 없어 업데이트를 건너뜁니다"
 fi
 ```
